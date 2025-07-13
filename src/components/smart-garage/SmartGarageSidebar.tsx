@@ -127,7 +127,6 @@ export function SmartGarageSidebar() {
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
-                    asChild
                     className={`
                       ${item.isActive 
                         ? 'bg-sidebar-accent text-sidebar-accent-foreground border-r-2 border-sidebar-primary' 
@@ -136,10 +135,8 @@ export function SmartGarageSidebar() {
                       ${collapsed ? 'justify-center' : ''}
                     `}
                   >
-                    <div className="flex items-center">
-                      <item.icon className="h-5 w-5" />
-                      {!collapsed && <span className="mr-3">{item.title}</span>}
-                    </div>
+                    <item.icon className="h-5 w-5" />
+                    {!collapsed && <span className="mr-3">{item.title}</span>}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
