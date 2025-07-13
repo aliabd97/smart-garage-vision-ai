@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Home, Building2, Car, BarChart3, MapPin, Settings, Plus, Menu } from "lucide-react";
 import {
   Sidebar,
@@ -55,18 +56,19 @@ const garageItems: GarageItem[] = [
 ];
 
 const navigationItems = [
-  { title: "الرئيسية", icon: Home, url: "/", isActive: true },
+  { title: "الرئيسية", icon: Home, url: "/" },
   { title: "الكراجات", icon: Building2, url: "/garages" },
   { title: "المركبات", icon: Car, url: "/vehicles" },
   { title: "التقارير", icon: BarChart3, url: "/reports" },
   { title: "الخرائط", icon: MapPin, url: "/maps" },
-  { title: "الإعدادات", icon: Settings, url: "/settings" },
+  { title: "الإعدادات", icon: Settings, url: "/setup" },
 ];
 
 export function SmartGarageSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const [selectedGarage, setSelectedGarage] = useState("downtown");
+  const location = useLocation();
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -126,17 +128,20 @@ export function SmartGarageSidebar() {
             <SidebarMenu>
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton 
-                    className={`
-                      ${item.isActive 
-                        ? 'bg-sidebar-accent text-sidebar-accent-foreground border-r-2 border-sidebar-primary' 
-                        : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-                      }
-                      ${collapsed ? 'justify-center' : ''}
-                    `}
-                  >
-                    <item.icon className="h-5 w-5" />
-                    {!collapsed && <span className="mr-3">{item.title}</span>}
+                  <SidebarMenuButton asChild>
+                    <Link
+                      to={item.url}
+                      className={`
+                        ${location.pathname === item.url
+                          ? 'bg-sidebar-accent text-sidebar-accent-foreground border-r-2 border-sidebar-primary' 
+                          : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                        }
+                        ${collapsed ? 'justify-center' : ''}
+                      `}
+                    >
+                      <item.icon className="h-5 w-5" />
+                      {!collapsed && <span className="mr-3">{item.title}</span>}
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

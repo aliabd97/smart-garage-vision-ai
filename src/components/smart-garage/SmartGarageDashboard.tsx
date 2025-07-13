@@ -166,12 +166,12 @@ export function SmartGarageDashboard() {
       {/* Main Content Grid */}
       <div className="grid grid-cols-12 gap-6">
         {/* Left Column - Garage View */}
-        <div className="col-span-8">
+        <div className="col-span-7">
           <GarageView garageName="كراج وسط المدينة" isLive={true} />
         </div>
 
         {/* Right Column - Stats and Info */}
-        <div className="col-span-4 space-y-6">
+        <div className="col-span-5 space-y-6">
           {/* Seat Availability - Large Display */}
           <Card className="p-6 bg-gradient-primary text-primary-foreground text-center">
             <div className="space-y-2">
