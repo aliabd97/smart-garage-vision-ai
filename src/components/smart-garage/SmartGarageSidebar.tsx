@@ -177,7 +177,7 @@ export function SmartGarageSidebar() {
                       transition-all duration-200
                     `}
                   >
-                    <div className={`flex items-center ${collapsed ? '' : 'w-full'}`}>
+                    <>
                       <div className="relative flex-shrink-0">
                         <Building2 className="h-5 w-5" />
                         <div 
@@ -203,7 +203,7 @@ export function SmartGarageSidebar() {
                           </div>
                         </div>
                       )}
-                    </div>
+                    </>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
